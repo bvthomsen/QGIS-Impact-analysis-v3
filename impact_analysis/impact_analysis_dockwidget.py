@@ -63,14 +63,14 @@ class ImpactAnalysisDockWidget(QDockWidget, FORM_CLASS):
         self.pmSearchobj = QMenu(self)
 
         # First set of menu actions (Actiongroup agSearchobj): Draw polygon .. Previous object
-        self.agSearchobj = QActionGroup(self,exclusive=True)
+        self.agSearchobj = QActionGroup(self)
         self.acPol  = self.agSearchobj.addAction(QAction(QIcon(':/plugins/{0}/icons/Icons8-Ios7-Maps-Polygon.ico'.format(__package__)),tr('Draw polygon'),self,checkable=True))
         self.acLin  = self.agSearchobj.addAction(QAction(QIcon(':/plugins/{0}/icons/Icons8-Ios7-Maps-Polyline.ico'.format(__package__)),tr('Draw line'),self,checkable=True))
         self.acPnt  = self.agSearchobj.addAction(QAction(QIcon(':/plugins/{0}/icons/Icons8-Ios7-Maps-Geo-Fence.ico'.format(__package__)),tr('Draw point'),self,checkable=True))
         self.acAlay = self.agSearchobj.addAction(QAction(QIcon(':/plugins/{0}/icons/Icons8-Ios7-Maps-Layers.ico'.format(__package__)),tr('Active selection'),self,checkable=True))
         self.acPobj = self.agSearchobj.addAction(QAction(QIcon(':/plugins/{0}/icons/Icons8-Ios7-Maps-Quest.ico'.format(__package__)),tr('Previous object'),self,checkable=True))
         self.pmSearchobj.addActions(self.agSearchobj.actions());
-
+        self.agSearchobj.setExclusive(True)
         # Menu separator
         self.pmSearchobj.addSeparator()
 
@@ -93,10 +93,11 @@ class ImpactAnalysisDockWidget(QDockWidget, FORM_CLASS):
         self.pbClear.clicked.connect(self.xx_pbClear_clicked)  
 
         # Setup for Copy button
-        self.agCopy = QActionGroup(self,exclusive=True)
+        self.agCopy = QActionGroup(self)
         self.acMapClipboard = self.agCopy.addAction(QAction(tr(u'Canvas bitmap/clipboard'),self,checkable=True))
         self.acClipboard = self.agCopy.addAction(QAction(tr(u'CSV/clipboard'),self,checkable=True))
         self.acPdfFile = self.agCopy.addAction(QAction(tr(u'PDF file'),self,checkable=True))
+        self.agCopy.setExclusive(True)
 
         # Create sub menu for button "Copy"
         self.pmCopy = QMenu(self)
@@ -113,9 +114,10 @@ class ImpactAnalysisDockWidget(QDockWidget, FORM_CLASS):
         self.pbCopy.clicked.connect(self.xx_pbCopy_clicked) 
         
         # Setup for Zoom button
-        self.agZoomobj = QActionGroup(self,exclusive=True)
+        self.agZoomobj = QActionGroup(self)
         self.acEntire = self.agZoomobj.addAction(QAction(tr(u'To entire object'),self,checkable=True))
         self.acOverlap = self.agZoomobj.addAction(QAction(tr(u'Only to overlap'),self,checkable=True))
+        self.agZoomobj.setExclusive(True)
 
         # Create sub menu for button "Zoom"
         self.pmZoomobj = QMenu(self)
@@ -132,9 +134,10 @@ class ImpactAnalysisDockWidget(QDockWidget, FORM_CLASS):
         self.pbZoomobj.clicked.connect(self.xx_pbZoomobj_clicked) 
 
         # Setup for Link button
-        self.agWeblink = QActionGroup(self,exclusive=True)
+        self.agWeblink = QActionGroup(self)
         self.acLink1 = self.agWeblink.addAction(QAction(tr(u'URL/filelink 1'),self,checkable=True))
         self.acLink2 = self.agWeblink.addAction(QAction(tr(u'URL/filelink 2'),self,checkable=True))
+        self.agWeblink.setExclusive(True)
 
         # Create sub menu for button "Link"
         self.pmWeblink = QMenu(self)
